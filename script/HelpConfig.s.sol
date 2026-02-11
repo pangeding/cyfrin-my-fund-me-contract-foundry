@@ -9,6 +9,10 @@ contract HelperConfig is Script{
     // If we are on a local anvil, we'll deploy mocks!
     // Otherwise, grab the existing address from the live network!
 
+    // constants
+    uint8 public constant DECIMALS = 8;
+    int256 public constant INITIAL_ANSWER = 2000e8;
+
     NetworkConfig public activeNetworkConfig;
 
     struct NetworkConfig{
@@ -39,8 +43,8 @@ contract HelperConfig is Script{
         // 1. deploy the mocks
         vm.startBroadcast();
         MockV3Aggregator mockV3Aggregator = new MockV3Aggregator(
-            8,
-            2000e8
+            DECIMALS,
+            INITIAL_ANSWER
         );
         vm.stopBroadcast();
 

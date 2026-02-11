@@ -32,6 +32,11 @@ contract FundMeTest is Test {
         assertEq(version, 4);
     }
 
+
+    function testFundFailsWithoutEnoughETH() public {
+        vm.expectRevert();
+        uint256 amount = 1;
+    }
     
 
 

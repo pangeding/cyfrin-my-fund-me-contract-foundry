@@ -35,7 +35,7 @@ contract FundMeTest is Test {
 
     function testFundFailsWithoutEnoughETH() public {
         vm.expectRevert();
-        uint256 amount = 1;
+        fundMe.fund();
     }
     
 

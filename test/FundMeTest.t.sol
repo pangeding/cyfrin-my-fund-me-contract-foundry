@@ -65,6 +65,27 @@ contract FundMeTest is Test {
         fundMe.withdraw();
     }
     
+    function testWithdrawWithSingleFunder() public funded{
+        // arrange
+        uint256 startingOwnerBalance = fundMe.getOwner().balance;
+        uint256 startingContractBalance = address(fundMe).balance;
+
+        // act
+        vm.prank(fundMe.getOwner());
+        fundMe.withdraw();
+
+
+        // assert
+        uint256 endingOwnerBalance = fundMe.getOwner().balance;
+        uint256 endingContractBalance = address(fundMe).balance;
+
+        assertEq(endingOwnerBalance, startingOwnerBalance + startingContractBalance);
+        assertEq(endingContractBalance, 0);
+    }   
+
+    function testWithdrawWithMultipleFunders() public {
+        
+    }
 
 
 

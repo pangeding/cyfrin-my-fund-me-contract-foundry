@@ -38,6 +38,12 @@ contract FundMeTest is Test {
         fundMe.fund();
     }
     
+    function testFundUpdatesFundedDataStructure() public {
+        fundMe.fund{value:1e18}();
 
+        uint256 amountFunded = fundMe.getAddressToAmountFunded(address(this));
+        assertEq(amountFunded, 1e18);
+    }
 
+    
 }
